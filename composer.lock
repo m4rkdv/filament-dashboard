@@ -4,8 +4,84 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "354f57898e2a3b337f2a7e216e0de3f1",
+    "content-hash": "ff40b9294cc4e53c46948f4106135b21",
     "packages": [
+        {
+            "name": "altwaireb/laravel-world",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/altwaireb/laravel-world.git",
+                "reference": "44f7f2537e93e5d108a12d3459dc0c7cc312762c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/altwaireb/laravel-world/zipball/44f7f2537e93e5d108a12d3459dc0c7cc312762c",
+                "reference": "44f7f2537e93e5d108a12d3459dc0c7cc312762c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0||^11.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
+                "orchestra/testbench": "^9.0.0||^8.22.0",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-arch": "^2.7",
+                "pestphp/pest-plugin-laravel": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Altwaireb\\World\\WorldServiceProvider"
+                    ],
+                    "aliases": {
+                        "World": "Altwaireb\\World\\Facades\\World"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Altwaireb\\World\\": "src/",
+                    "Altwaireb\\World\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdulmajeed Altwaireb",
+                    "email": "altwaireb@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel World, Countries States Cities DB Migration & Seeder",
+            "homepage": "https://github.com/altwaireb/laravel-world",
+            "keywords": [
+                "Laravel-World",
+                "cities",
+                "countries",
+                "laravel",
+                "states"
+            ],
+            "support": {
+                "issues": "https://github.com/altwaireb/laravel-world/issues",
+                "source": "https://github.com/altwaireb/laravel-world/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Altwaireb",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-24T03:47:13+00:00"
+        },
         {
             "name": "anourvalar/eloquent-serialize",
             "version": "1.2.23",
@@ -10225,7 +10301,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-zip": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
