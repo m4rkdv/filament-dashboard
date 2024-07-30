@@ -17,7 +17,9 @@ class DepartamentResource extends Resource
 {
     protected static ?string $model = Departament::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-presentation-chart-line';
+    protected static ?string $navigationGroup = 'System Manangment';
+    protected static ?int $navigationSort =3;
 
     public static function form(Form $form): Form
     {
@@ -35,7 +37,8 @@ class DepartamentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('employees_count')->counts('employ')
+                //Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

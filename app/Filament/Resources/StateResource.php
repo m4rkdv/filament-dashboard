@@ -17,7 +17,7 @@ class StateResource extends Resource
 {
     protected static ?string $model = State::class;
     protected static ?string $navigationGroup = 'System Manangment';
-    protected static ?int $navigationSort =4;
+    protected static ?int $navigationSort =5;
     protected static ?string $navigationIcon = 'heroicon-o-map';
 
     public static function form(Form $form): Form
@@ -47,7 +47,8 @@ class StateResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('State name'),
                 Tables\Columns\TextColumn::make('latitude')
                     ->numeric()
                     ->sortable(),
