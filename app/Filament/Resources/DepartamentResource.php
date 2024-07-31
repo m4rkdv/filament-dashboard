@@ -37,8 +37,8 @@ class DepartamentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('employees_count')->counts('employ')
-                //Tables\Columns\TextColumn::make('created_at')
+                //Tables\Columns\TextColumn::make('employees_count')->counts('user')
+                Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
