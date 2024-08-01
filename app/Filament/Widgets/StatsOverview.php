@@ -19,6 +19,11 @@ class StatsOverview extends BaseWidget
             Stat::make('Total Employees', $totEmployees),
             Stat::make('Pending Holidays', $totHolidays),
             Stat::make('TimeSheets', $totTimeSheet),
+            Stat::make('Unique views', '192.1k')
+            ->description('32k increase')
+            ->descriptionIcon('heroicon-m-arrow-trending-up')
+            ->chart([7, 2, 10, 3, 15, 4, 17])
+            ->color('success'),
         ];
     }
 }
