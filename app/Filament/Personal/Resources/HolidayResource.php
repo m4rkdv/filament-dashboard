@@ -23,6 +23,8 @@ class HolidayResource extends Resource
     protected static ?string $model = Holiday::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
+    protected static ?string $navigationGroup = 'Employees Manangment';
+    protected static ?int $navigationSort = 3;
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->where('user_id', Auth::user()->id);
