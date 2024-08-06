@@ -16,8 +16,10 @@ class ListTimesheets extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
+        $lastTimesheet= Timesheet::where('user_id',Auth::user()->id)->orderBy('id','desc')->first();
+        if ($lastTimesheet==null){
+            return[
+                Actions\CreateAction::make(),
             Action::make('inWork')
                 ->label('Start Work')
                 ->color('success')
@@ -28,16 +30,74 @@ class ListTimesheets extends ListRecords
                     $timesheet->calendar_id=1;
                     $timesheet->user_id=$user->id;
                     $timesheet->day_in=Carbon::now();
-                    $timesheet->day_out=Carbon::now();
+                   // $timesheet->day_out=Carbon::now();
                     $timesheet->type='work';
                     $timesheet->save();
+                })
+                ->requiresConfirmation(),
+            ];
+        };
+        return [
+            Actions\CreateAction::make(),
+            Action::make('inWork')
+                ->label('Start Work')
+                ->color('success')
+                ->keyBindings(['command+s','ctrl+s'])
+                ->visible(!$lastTimesheet->day_out==null)
+                ->disabled($lastTimesheet->day_out==null)
+                ->action(function(){
+                    $user= Auth::user();
+                    $timesheet= new Timesheet();
+                    $timesheet->calendar_id=1;
+                    $timesheet->user_id=$user->id;
+                    $timesheet->day_in=Carbon::now();
+                   // $timesheet->day_out=Carbon::now();
+                    $timesheet->type='work';
+                    $timesheet->save();
+                })
+                ->requiresConfirmation(),
+            Action::make('stopWork')
+                ->label('End Work')
+                ->color('success')
+                ->visible($lastTimesheet->day_out==null &&  $lastTimesheet->type!='pause')
+                ->disabled(!$lastTimesheet->day_out==null)
+                ->action(function() use($lastTimesheet){
+                    $lastTimesheet->day_out=Carbon::now();
+                    $lastTimesheet->save();
                 })
                 ->requiresConfirmation(),
             Action::make('inPause')
                 ->label('Start Breake')
                 ->color('info')
-                ->requiresConfirmation(),
-            
+                ->requiresConfirmation()
+                ->visible($lastTimesheet->day_out==null &&  $lastTimesheet->type!='pause')
+                ->disabled(!$lastTimesheet->day_out==null)
+                ->action(function()use($lastTimesheet){
+                    $lastTimesheet->day_out = Carbon::now();
+                    $lastTimesheet->save();
+                    $timesheet = new Timesheet();
+                    $timesheet->calendar_id=1;
+                    $timesheet->user_id= Auth::user()->id;
+                    $timesheet->day_in=Carbon::now();
+                    $timesheet->type ='pause';
+                    $timesheet->save();
+                }),
+            Action::make('stopPause')
+                ->label('End Breake')
+                ->color('info')
+                ->requiresConfirmation()
+                ->visible($lastTimesheet->day_out==null &&  $lastTimesheet->type=='pause')
+                ->disabled(!$lastTimesheet->day_out==null)
+                ->action(function()use($lastTimesheet){
+                    $lastTimesheet->day_out = Carbon::now();
+                    $lastTimesheet->save();
+                    $timesheet = new Timesheet();
+                    $timesheet->calendar_id=1;
+                    $timesheet->user_id= Auth::user()->id;
+                    $timesheet->day_in=Carbon::now();
+                    $timesheet->type ='work';
+                    $timesheet->save();
+                }),  
         ];
     }
 }

@@ -21,7 +21,7 @@ class TimesheetResource extends Resource
     
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('user_id', Auth::user()->id);
+        return parent::getEloquentQuery()->where('user_id', Auth::user()->id)->orderBy('id','desc');
     }
     protected static ?string $navigationGroup = 'Employees Manangment';
     protected static ?int $navigationSort =2;
