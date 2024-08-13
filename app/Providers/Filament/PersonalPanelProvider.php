@@ -27,6 +27,7 @@ class PersonalPanelProvider extends PanelProvider
             ->path('personal')
             ->login()
             ->default()
+            ->databaseNotifications()
             ->colors([
                 'primary' => Color::Amber,
             ])
