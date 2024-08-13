@@ -29,7 +29,11 @@ class TestEmails extends Command
     public function handle()
     {
         $user=User::find(1);
-        $data='asdasd';
+        $data= array(
+            'day'=>' day test',
+            'name'=> User::find(1)->name,
+            'email'=> User::find(1)->email,
+        );
         Mail::to($user)->send(new HolidayPending($data));
     }
 }
