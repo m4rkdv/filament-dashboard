@@ -85,6 +85,11 @@ class UserResource extends Resource
                 ->required(),
                 Forms\Components\TextInput::make('postal_code')
                 ->required(),
+                Forms\Components\Select::make('roles')
+                ->relationship('roles', 'name')
+                ->multiple()
+                ->preload()
+                ->searchable(),
             ])
          ]);
                

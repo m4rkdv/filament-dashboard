@@ -28,6 +28,7 @@ class PersonalPanelProvider extends PanelProvider
             ->login()
             ->default()
             ->databaseNotifications()
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -54,6 +55,9 @@ class PersonalPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
             ]);
     }
 }
