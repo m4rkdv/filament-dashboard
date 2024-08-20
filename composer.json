@@ -12,6 +12,7 @@
         "ext-zip": "*",
         "altwaireb/laravel-world": "^1.0",
         "bezhansalleh/filament-shield": "^3.2",
+        "eightynine/filament-excel-import": "^3.1",
         "filament/filament": "3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",

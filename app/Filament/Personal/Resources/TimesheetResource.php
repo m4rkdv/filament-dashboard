@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use App\Filament\Personal\Resources\TimesheetResource\Pages;
 use App\Filament\Personal\Resources\TimesheetResource\RelationManagers;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class TimesheetResource extends Resource
 {
@@ -22,7 +22,7 @@ class TimesheetResource extends Resource
     
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('user_id', Auth::user()->id)->orderBy('id','desc');
+        return parent::getEloquentQuery()->where('user_id', Auth::user()->id)->orderBy('day_in','desc');
     }
     protected static ?string $navigationGroup = 'Employees Manangment';
     protected static ?int $navigationSort =2;
