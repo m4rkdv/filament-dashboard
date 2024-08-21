@@ -15,9 +15,6 @@ class ListHolidays extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            ExcelImportAction::make()
-                ->color("info")
-                ->use(TimesheetImportExcel::class),
             Actions\CreateAction::make(),
         ];
     }

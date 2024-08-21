@@ -18,14 +18,14 @@ class TimesheetImportExcel implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row){
-            $calendar_id=Calendar::where('name',$row[0])->first();
+            $calendar_id=Calendar::where('name',$row['user'])->first();
             if ($calendar_id != null){
                 Timesheet::create([
                     'calendar_id'=>$calendar_id->id,
                     'user_id'=>Auth::user()->id,
-                    'type'=> $row['tipo'],
-                    'day_in'=> $row['hora_de_entrada'], 
-                    'day_out'=> $row['hora_de_salida'],
+                    'type'=> $row['Type'],
+                    'day_in'=> $row['day_in'], 
+                    'day_out'=> $row['day_out'],
                     'created_at'=>Carbon::now(),
                     'updated_at'=>Carbon::now(),
                  ]);

@@ -7,8 +7,10 @@ use Filament\Actions;
 use App\Models\Timesheet;
 use Filament\Actions\Action;
 use Illuminate\Support\Facades\Auth;
+use Filament\Resources\Components\Tab;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Personal\Resources\TimesheetResource;
 
 class ListTimesheets extends ListRecords
@@ -118,6 +120,22 @@ class ListTimesheets extends ListRecords
                     ->color('info')
                     ->send();
                 }),  
+        ];
+    }
+
+    public function getTabs(): array
+    {
+        return [
+            'all' => Tab::make('all')
+            ->badge(Timesheet::query()->whereIn('type', ['work', 'pause'])->count()),
+            'pause' => Tab::make('pause')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'pause'))
+                ->badge(Timesheet::query()->where('type','pause')->count())
+                ->badgeColor('gray'),
+            'work' => Tab::make('work')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'work'))
+                ->badge(Timesheet::query()->where('type','work')->count())
+                ->badgeColor('success'),
         ];
     }
 }
