@@ -11,6 +11,7 @@
         "php": "^8.1",
         "ext-zip": "*",
         "altwaireb/laravel-world": "^1.0",
+        "barryvdh/laravel-dompdf": "^3.0",
         "bezhansalleh/filament-shield": "^3.2",
         "eightynine/filament-excel-import": "^3.1",
         "filament/filament": "3.2",

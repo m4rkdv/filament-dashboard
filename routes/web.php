@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/personal');
 });
+Route::get('/test/{user}', function () {
+    $pdf = Pdf::loadView('pdf.example');
+    return $pdf->download('example.pdf');;
+})->name('pdf.example');

@@ -12,6 +12,8 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Personal\Resources\TimesheetResource;
+use App\Imports\TimesheetImportExcel;
+use EightyNine\ExcelImport\ExcelImportAction;
 
 class ListTimesheets extends ListRecords
 {
@@ -119,7 +121,19 @@ class ListTimesheets extends ListRecords
                     ->info()
                     ->color('info')
                     ->send();
-                }),  
+                }),
+            ExcelImportAction::make()
+                ->color("info")
+                ->use(TimesheetImportExcel::class),
+            Action::make('createPDF')
+            ->label('Create PDF')
+            ->color('gray')
+            ->requiresConfirmation()
+            ->url(
+                fn():string =>route('pdf.example',['user'=> Auth::user()]),
+                shouldOpenInNewTab:true
+            )
+
         ];
     }
 
