@@ -1,10 +1,20 @@
-<html>
-    <body>
-        <h1>Titulo</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Totam officia porro molestiae minus ipsa tenetur aperiam in, 
-            voluptates expedita quia sit id voluptate quisquam voluptatibus veritatis,
-            dolorum itaque, odit ipsam?</p>
-    </body>
+<h1>Timesheets</h1>
+<table>
+    <thead>
+        <th>Calendar</th>
+        <th>Type</th>
+        <th>Day in</th>
+        <th>Day out</th>
+    </thead>
+    <tbody>
+        @foreach ($timesheet as $item)
+        <tr>
+            <td>{{$item->calendar->name}}</td>
+            <td>{{$item->type}}</td>
+            <td>{{$item->day_in}}</td>
+            <td>{{$item->day_out}}</td>
+        </tr>
+        @endforeach
+    </tbody>
 
-</html>
+</table>

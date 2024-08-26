@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -17,7 +18,4 @@ use Barryvdh\DomPDF\Facade\Pdf;
 Route::get('/', function () {
     return redirect('/personal');
 });
-Route::get('/test/{user}', function () {
-    $pdf = Pdf::loadView('pdf.example');
-    return $pdf->download('example.pdf');;
-})->name('pdf.example');
+Route::get('/pdf/generate/timesheet/{user}', [PdfController::class,'TimesheetRecords'])->name('pdf.example');

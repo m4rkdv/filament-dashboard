@@ -32,7 +32,7 @@ class PersonalPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
                 'danger' => Color::Red,
-                'gray' => Color::Zinc,
+                'gray' => Color::Gray,
             ])
             ->discoverResources(in: app_path('Filament/Personal/Resources'), for: 'App\\Filament\\Personal\\Resources')
             ->discoverPages(in: app_path('Filament/Personal/Pages'), for: 'App\\Filament\\Personal\\Pages')
