@@ -16,4 +16,9 @@ class Settings extends Page
     {
         $this->count++;
     }
+
+    public function decrement()
+    {
+        $this->count--;
+    }
 }
